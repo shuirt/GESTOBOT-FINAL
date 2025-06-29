@@ -241,16 +241,9 @@ if (heroTitle) {
 
     function type() {
         if (charIndex < textToType.length) {
-            if (textToType.charAt(charIndex) === "<") {
-                // Handle HTML tags like <br>
-                const endIndex = textToType.indexOf(">", charIndex);
-                if (endIndex !== -1) {
-                    typedTextSpan.innerHTML += textToType.substring(charIndex, endIndex + 1);
-                    charIndex = endIndex + 1;
-                } else {
-                    typedTextSpan.innerHTML += textToType.charAt(charIndex);
-                    charIndex++;
-                }
+            if (textToType.substring(charIndex, charIndex + 4) === "<br>") {
+                typedTextSpan.innerHTML += "<br>";
+                charIndex += 4;
             } else {
                 typedTextSpan.innerHTML += textToType.charAt(charIndex);
                 charIndex++;
