@@ -227,3 +227,51 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
+
+
+
+// Typing Animation for Hero Title
+const heroTitle = document.querySelector(".hero-title.typing-animation");
+
+if (heroTitle) {
+    const textToType = heroTitle.getAttribute("data-text");
+    const typedTextSpan = heroTitle.querySelector(".typed-text");
+    const cursorSpan = heroTitle.querySelector(".cursor");
+    let charIndex = 0;
+
+    function type() {
+        if (charIndex < textToType.length) {
+            if (textToType.charAt(charIndex) === "<") {
+                // Handle HTML tags like <br>
+                const endIndex = textToType.indexOf(">", charIndex);
+                if (endIndex !== -1) {
+                    typedTextSpan.innerHTML += textToType.substring(charIndex, endIndex + 1);
+                    charIndex = endIndex + 1;
+                } else {
+                    typedTextSpan.innerHTML += textToType.charAt(charIndex);
+                    charIndex++;
+                }
+            } else {
+                typedTextSpan.innerHTML += textToType.charAt(charIndex);
+                charIndex++;
+            }
+            setTimeout(type, 50); // Typing speed
+        } else {
+            cursorSpan.style.display = "none"; // Hide cursor after typing
+        }
+    }
+
+    // Start typing animation when the element is in view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                type();
+                observer.unobserve(heroTitle);
+            }
+        });
+    }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
+    observer.observe(heroTitle);
+}
+
+

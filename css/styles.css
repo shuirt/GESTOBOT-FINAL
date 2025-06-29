@@ -749,3 +749,28 @@ section {
 }
 
 
+
+
+/* Typing Animation */
+.typing-animation .typed-text {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.typing-animation .cursor {
+    display: inline-block;
+    background-color: #093447;
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
