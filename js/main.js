@@ -88,20 +88,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Simular envio do formulário
+            // Enviar dados para o backend
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             
             submitBtn.textContent = 'Enviando...';
             submitBtn.disabled = true;
             
-            // Simular delay de envio
-            setTimeout(() => {
-                showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-                this.reset();
+            // Enviar para o backend
+            fetch('https://19hninclywmq.manus.space/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+                    this.reset();
+                } else {
+                    showNotification(data.error || 'Erro ao enviar mensagem. Tente novamente.', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                showNotification('Erro ao enviar mensagem. Verifique sua conexão e tente novamente.', 'error');
+            })
+            .finally(() => {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 2000);
+            });
         });
     }
 
