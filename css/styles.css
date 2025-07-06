@@ -10,8 +10,20 @@ html {
     font-size: 16px;
 }
 
+@font-face {
+    font-family: 'Axiforma';
+    src: url('../assets/fonts/axiforma-regular.eot');
+    src: url('../assets/fonts/axiforma-regular.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/axiforma-regular.woff2') format('woff2'),
+         url('../assets/fonts/axiforma-regular.woff') format('woff'),
+         url('../assets/fonts/axiforma-regular.ttf') format('truetype'),
+         url('../assets/fonts/axiforma-regular.svg#AxiformaRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Axiforma', sans-serif;
     line-height: 1.6;
     color: #212529;
     background-color: #ffffff;
@@ -70,6 +82,21 @@ body {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     position: relative;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #226E83;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
 }
 
 .nav-link:hover {
