@@ -64,68 +64,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Formulário de contato
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Obter dados do formulário
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Validação básica
-            if (!name || !email || !message) {
-                showNotification('Por favor, preencha todos os campos.', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showNotification('Por favor, insira um email válido.', 'error');
-                return;
-            }
-            
-            // Enviar dados para o backend
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.disabled = true;
-            
-            // Enviar para o backend
-            fetch('https://19hninclywmq.manus.space/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-                    this.reset();
-                } else {
-                    showNotification(data.error || 'Erro ao enviar mensagem. Tente novamente.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                showNotification('Erro ao enviar mensagem. Verifique sua conexão e tente novamente.', 'error');
-            })
-            .finally(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-    }
+    // Formulário de contato (removido, agora usando FormSubmit)
+    // const contactForm = document.getElementById("contactForm");
+    // if (contactForm) {
+    //     contactForm.addEventListener("submit", function(e) {
+    //         e.preventDefault();
+    //         // ... código de envio de formulário removido ...
+    //     });
+    // }
 
     // Efeito parallax sutil no hero
     window.addEventListener('scroll', function() {
