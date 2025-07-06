@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Menu mobile toggle - Versão melhorada
+    // Menu mobile toggle - Versão corrigida
     const hamburgerMenu = document.querySelector(".hamburger-menu");
     const mobileMenu = document.querySelector(".mobile-menu");
 
@@ -70,6 +70,13 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerMenu.classList.toggle("active");
             mobileMenu.classList.toggle("active");
             
+            // Forçar exibição do menu mobile quando ativo
+            if (mobileMenu.classList.contains("active")) {
+                mobileMenu.style.display = "flex";
+            } else {
+                mobileMenu.style.display = "none";
+            }
+            
             // Log do estado atual
             console.log("Hamburger active:", hamburgerMenu.classList.contains("active"));
             console.log("Mobile menu active:", mobileMenu.classList.contains("active"));
@@ -82,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log("Mobile link clicked, closing menu");
                 hamburgerMenu.classList.remove("active");
                 mobileMenu.classList.remove("active");
+                mobileMenu.style.display = "none";
             });
         });
 
@@ -90,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!hamburgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
                 hamburgerMenu.classList.remove("active");
                 mobileMenu.classList.remove("active");
+                mobileMenu.style.display = "none";
             }
         });
     } else {
