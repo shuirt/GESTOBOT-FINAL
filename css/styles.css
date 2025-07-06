@@ -620,54 +620,7 @@ section {
     transition: all 0.3s ease;
 }
 
-.mobile-menu {
-    display: none;
-    flex-direction: column;
-    background: white;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 0;
-    border-radius: 0 0 20px 20px;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-    z-index: 999;
-}
 
-.mobile-nav-link {
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-    color: #6c757d;
-    font-weight: 500;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid #f1f3f4;
-    display: block;
-}
-
-.mobile-nav-link:hover {
-    color: #226E83;
-    background: rgba(34, 110, 131, 0.05);
-}
-
-.mobile-nav-btn {
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-    color: #6c757d;
-    font-weight: 500;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    border-bottom: none;
-    display: block;
-    background: rgba(34, 110, 131, 0.1);
-}
-
-.mobile-nav-btn:hover {
-    color: #226E83;
-    background: rgba(34, 110, 131, 0.15);
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -746,3 +699,59 @@ section {
         padding: 0.5rem 1rem;
     }
 }
+
+
+
+
+
+
+.mobile-menu {
+    display: none; /* Esconde o menu por padrão */
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.mobile-menu.active {
+    display: flex; /* Mostra o menu quando ativo */
+}
+
+.mobile-nav-link, .mobile-nav-btn {
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f1f3f4;
+    display: block; /* Garante que cada item ocupe uma linha */
+}
+
+.mobile-nav-link:hover {
+    color: #226E83;
+    background: rgba(34, 110, 131, 0.05);
+}
+
+.mobile-nav-btn {
+    background: #226E83;
+    color: white;
+    margin: 0.5rem 1.5rem;
+    border-radius: 25px;
+    text-align: center;
+    border-bottom: none;
+}
+
+.mobile-nav-btn:hover {
+    background: #093447;
+}
+
+
