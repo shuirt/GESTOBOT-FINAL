@@ -54,15 +54,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Menu mobile toggle
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinksContainer = document.querySelector('.nav-links');
-    
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', function() {
-            navLinksContainer.classList.toggle('active');
-            this.classList.toggle('active');
+    const hamburgerMenu = document.querySelector(".hamburger-menu");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener("click", function() {
+            hamburgerMenu.classList.toggle("active");
+            mobileMenu.classList.toggle("active");
         });
     }
+
+    // Fechar menu mobile ao clicar em um link
+    const mobileNavLinks = document.querySelectorAll(".mobile-menu a");
+    mobileNavLinks.forEach(link => {
+        link.addEventListener("click", function() {
+            hamburgerMenu.classList.remove("active");
+            mobileMenu.classList.remove("active");
+        });
+    });
 
     // Formulário de contato (removido, agora usando FormSubmit)
     // const contactForm = document.getElementById("contactForm");
