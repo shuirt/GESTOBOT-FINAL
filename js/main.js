@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (hamburgerMenu) {
         hamburgerMenu.addEventListener("click", function() {
+            console.log("Hamburger clicked!");
             hamburgerMenu.classList.toggle("active");
             mobileMenu.classList.toggle("active");
         });
