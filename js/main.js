@@ -53,26 +53,50 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Menu mobile toggle
+    // Menu mobile toggle - Versão melhorada
     const hamburgerMenu = document.querySelector(".hamburger-menu");
     const mobileMenu = document.querySelector(".mobile-menu");
 
-    if (hamburgerMenu) {
-        hamburgerMenu.addEventListener("click", function() {
+    if (hamburgerMenu && mobileMenu) {
+        console.log("Menu hambúrguer encontrado, adicionando event listener");
+        
+        hamburgerMenu.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             console.log("Hamburger clicked!");
+            
+            // Toggle das classes
             hamburgerMenu.classList.toggle("active");
             mobileMenu.classList.toggle("active");
+            
+            // Log do estado atual
+            console.log("Hamburger active:", hamburgerMenu.classList.contains("active"));
+            console.log("Mobile menu active:", mobileMenu.classList.contains("active"));
         });
-    }
 
-    // Fechar menu mobile ao clicar em um link
-    const mobileNavLinks = document.querySelectorAll(".mobile-menu a");
-    mobileNavLinks.forEach(link => {
-        link.addEventListener("click", function() {
-            hamburgerMenu.classList.remove("active");
-            mobileMenu.classList.remove("active");
+        // Fechar menu mobile ao clicar em um link
+        const mobileNavLinks = document.querySelectorAll(".mobile-menu a");
+        mobileNavLinks.forEach(link => {
+            link.addEventListener("click", function() {
+                console.log("Mobile link clicked, closing menu");
+                hamburgerMenu.classList.remove("active");
+                mobileMenu.classList.remove("active");
+            });
         });
-    });
+
+        // Fechar menu ao clicar fora dele
+        document.addEventListener("click", function(e) {
+            if (!hamburgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburgerMenu.classList.remove("active");
+                mobileMenu.classList.remove("active");
+            }
+        });
+    } else {
+        console.error("Menu hambúrguer ou mobile menu não encontrado!");
+        console.log("Hamburger menu:", hamburgerMenu);
+        console.log("Mobile menu:", mobileMenu);
+    }
 
     // Formulário de contato (removido, agora usando FormSubmit)
     // const contactForm = document.getElementById("contactForm");
